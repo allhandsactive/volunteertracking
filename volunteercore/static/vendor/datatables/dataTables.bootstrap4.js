@@ -11,34 +11,34 @@
  * for further information.
  */
 (function (factory) {
-  if (typeof define === 'function' && define.amd) {
+  if (typeof define === "function" && define.amd) {
     // AMD
-    define(['jquery', 'datatables.net'], function ($) {
-      return factory($, window, document)
-    })
-  } else if (typeof exports === 'object') {
+    define(["jquery", "datatables.net"], function ($) {
+      return factory($, window, document);
+    });
+  } else if (typeof exports === "object") {
     // CommonJS
     module.exports = function (root, $) {
       if (!root) {
-        root = window
+        root = window;
       }
 
       if (!$ || !$.fn.dataTable) {
         // Require DataTables, which attaches to jQuery, including
         // jQuery if needed and have a $ property so we can access the
         // jQuery object that is used
-        $ = require('datatables.net')(root, $).$
+        $ = require("datatables.net")(root, $).$;
       }
 
-      return factory($, root, root.document)
-    }
+      return factory($, root, root.document);
+    };
   } else {
     // Browser
-    factory(jQuery, window, document)
+    factory(jQuery, window, document);
   }
 })(function ($, window, document, undefined) {
-  'use strict'
-  const DataTable = $.fn.dataTable
+  "use strict";
+  const DataTable = $.fn.dataTable;
 
   /* Set the defaults for DataTables initialisation */
   $.extend(true, DataTable.defaults, {
@@ -46,18 +46,18 @@
       "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
       "<'row'<'col-sm-12'tr>>" +
       "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-    renderer: 'bootstrap'
-  })
+    renderer: "bootstrap",
+  });
 
   /* Default class modification */
   $.extend(DataTable.ext.classes, {
-    sWrapper: 'dataTables_wrapper dt-bootstrap4',
-    sFilterInput: 'form-control form-control-sm',
+    sWrapper: "dataTables_wrapper dt-bootstrap4",
+    sFilterInput: "form-control form-control-sm",
     sLengthSelect:
-      'custom-select custom-select-sm form-control form-control-sm',
-    sProcessing: 'dataTables_processing card',
-    sPageButton: 'paginate_button page-item'
-  })
+      "custom-select custom-select-sm form-control form-control-sm",
+    sProcessing: "dataTables_processing card",
+    sPageButton: "paginate_button page-item",
+  });
 
   /* Bootstrap paging button renderer */
   DataTable.ext.renderer.pageButton.bootstrap = function (
@@ -68,118 +68,118 @@
     page,
     pages
   ) {
-    const api = new DataTable.Api(settings)
-    const classes = settings.oClasses
-    const lang = settings.oLanguage.oPaginate
-    const aria = settings.oLanguage.oAria.paginate || {}
-    let btnDisplay
-    let btnClass
-    let counter = 0
+    const api = new DataTable.Api(settings);
+    const classes = settings.oClasses;
+    const lang = settings.oLanguage.oPaginate;
+    const aria = settings.oLanguage.oAria.paginate || {};
+    let btnDisplay;
+    let btnClass;
+    let counter = 0;
 
     var attach = function (container, buttons) {
-      let i, ien, node, button
+      let i, ien, node, button;
       const clickHandler = function (e) {
-        e.preventDefault()
+        e.preventDefault();
         if (
-          !$(e.currentTarget).hasClass('disabled') &&
+          !$(e.currentTarget).hasClass("disabled") &&
           api.page() != e.data.action
         ) {
-          api.page(e.data.action).draw('page')
+          api.page(e.data.action).draw("page");
         }
-      }
+      };
 
       for (i = 0, ien = buttons.length; i < ien; i++) {
-        button = buttons[i]
+        button = buttons[i];
 
         if (Array.isArray(button)) {
-          attach(container, button)
+          attach(container, button);
         } else {
-          btnDisplay = ''
-          btnClass = ''
+          btnDisplay = "";
+          btnClass = "";
 
           switch (button) {
-            case 'ellipsis':
-              btnDisplay = '&#x2026;'
-              btnClass = 'disabled'
-              break
+            case "ellipsis":
+              btnDisplay = "&#x2026;";
+              btnClass = "disabled";
+              break;
 
-            case 'first':
-              btnDisplay = lang.sFirst
-              btnClass = button + (page > 0 ? '' : ' disabled')
-              break
+            case "first":
+              btnDisplay = lang.sFirst;
+              btnClass = button + (page > 0 ? "" : " disabled");
+              break;
 
-            case 'previous':
-              btnDisplay = lang.sPrevious
-              btnClass = button + (page > 0 ? '' : ' disabled')
-              break
+            case "previous":
+              btnDisplay = lang.sPrevious;
+              btnClass = button + (page > 0 ? "" : " disabled");
+              break;
 
-            case 'next':
-              btnDisplay = lang.sNext
-              btnClass = button + (page < pages - 1 ? '' : ' disabled')
-              break
+            case "next":
+              btnDisplay = lang.sNext;
+              btnClass = button + (page < pages - 1 ? "" : " disabled");
+              break;
 
-            case 'last':
-              btnDisplay = lang.sLast
-              btnClass = button + (page < pages - 1 ? '' : ' disabled')
-              break
+            case "last":
+              btnDisplay = lang.sLast;
+              btnClass = button + (page < pages - 1 ? "" : " disabled");
+              break;
 
             default:
-              btnDisplay = button + 1
-              btnClass = page === button ? 'active' : ''
-              break
+              btnDisplay = button + 1;
+              btnClass = page === button ? "active" : "";
+              break;
           }
 
           if (btnDisplay) {
-            node = $('<li>', {
-              class: classes.sPageButton + ' ' + btnClass,
+            node = $("<li>", {
+              class: classes.sPageButton + " " + btnClass,
               id:
-                idx === 0 && typeof button === 'string'
-                  ? settings.sTableId + '_' + button
-                  : null
+                idx === 0 && typeof button === "string"
+                  ? settings.sTableId + "_" + button
+                  : null,
             })
               .append(
-                $('<a>', {
-                  href: '#',
-                  'aria-controls': settings.sTableId,
-                  'aria-label': aria[button],
-                  'data-dt-idx': counter,
+                $("<a>", {
+                  href: "#",
+                  "aria-controls": settings.sTableId,
+                  "aria-label": aria[button],
+                  "data-dt-idx": counter,
                   tabindex: settings.iTabIndex,
-                  class: 'page-link'
+                  class: "page-link",
                 }).html(btnDisplay)
               )
-              .appendTo(container)
+              .appendTo(container);
 
-            settings.oApi._fnBindAction(node, { action: button }, clickHandler)
+            settings.oApi._fnBindAction(node, { action: button }, clickHandler);
 
-            counter++
+            counter++;
           }
         }
       }
-    }
+    };
 
     // IE9 throws an 'unknown error' if document.activeElement is used
     // inside an iframe or frame.
-    let activeEl
+    let activeEl;
 
     try {
       // Because this approach is destroying and recreating the paging
       // elements, focus is lost on the select button which is bad for
       // accessibility. So we want to restore focus once the draw has
       // completed
-      activeEl = $(host).find(document.activeElement).data('dt-idx')
+      activeEl = $(host).find(document.activeElement).data("dt-idx");
     } catch (e) {}
 
     attach(
-      $(host).empty().html('<ul class="pagination"/>').children('ul'),
+      $(host).empty().html('<ul class="pagination"/>').children("ul"),
       buttons
-    )
+    );
 
     if (activeEl !== undefined) {
       $(host)
-        .find('[data-dt-idx=' + activeEl + ']')
-        .trigger('focus')
+        .find("[data-dt-idx=" + activeEl + "]")
+        .trigger("focus");
     }
-  }
+  };
 
-  return DataTable
-})
+  return DataTable;
+});
