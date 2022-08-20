@@ -26,6 +26,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: allhandsactive/volunteertracking:latest, allhandsactive/volunteertracking:latest:${{ github.sha }}
+          tags: allhandsactive/volunteertracking:latest, allhandsactive/volunteertracking:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
