@@ -5,30 +5,30 @@
 (function () {
   "use strict";
 
-  var _WINDOW = {};
-  var _DOCUMENT = {};
+  let _WINDOW = {};
+  let _DOCUMENT = {};
 
   try {
     if (typeof window !== "undefined") _WINDOW = window;
     if (typeof document !== "undefined") _DOCUMENT = document;
   } catch (e) {}
 
-  var _ref = _WINDOW.navigator || {},
-    _ref$userAgent = _ref.userAgent,
-    userAgent = _ref$userAgent === void 0 ? "" : _ref$userAgent;
+  const _ref = _WINDOW.navigator || {};
+  const _ref$userAgent = _ref.userAgent;
+  const userAgent = _ref$userAgent === void 0 ? "" : _ref$userAgent;
 
-  var WINDOW = _WINDOW;
-  var DOCUMENT = _DOCUMENT;
-  var IS_BROWSER = !!WINDOW.document;
-  var IS_DOM =
+  const WINDOW = _WINDOW;
+  const DOCUMENT = _DOCUMENT;
+  const IS_BROWSER = !!WINDOW.document;
+  const IS_DOM =
     !!DOCUMENT.documentElement &&
     !!DOCUMENT.head &&
     typeof DOCUMENT.addEventListener === "function" &&
     typeof DOCUMENT.createElement === "function";
-  var IS_IE = ~userAgent.indexOf("MSIE") || ~userAgent.indexOf("Trident/");
+  const IS_IE = ~userAgent.indexOf("MSIE") || ~userAgent.indexOf("Trident/");
 
-  var NAMESPACE_IDENTIFIER = "___FONT_AWESOME___";
-  var PRODUCTION = (function () {
+  const NAMESPACE_IDENTIFIER = "___FONT_AWESOME___";
+  const PRODUCTION = (function () {
     try {
       return "production" === "production";
     } catch (e) {
@@ -62,9 +62,9 @@
   }
 
   function _objectSpread(target) {
-    for (var i = 1; i < arguments.length; i++) {
+    for (let i = 1; i < arguments.length; i++) {
       var source = arguments[i] != null ? arguments[i] : {};
-      var ownKeys = Object.keys(source);
+      let ownKeys = Object.keys(source);
 
       if (typeof Object.getOwnPropertySymbols === "function") {
         ownKeys = ownKeys.concat(
@@ -82,21 +82,21 @@
     return target;
   }
 
-  var w = WINDOW || {};
+  const w = WINDOW || {};
   if (!w[NAMESPACE_IDENTIFIER]) w[NAMESPACE_IDENTIFIER] = {};
   if (!w[NAMESPACE_IDENTIFIER].styles) w[NAMESPACE_IDENTIFIER].styles = {};
   if (!w[NAMESPACE_IDENTIFIER].hooks) w[NAMESPACE_IDENTIFIER].hooks = {};
   if (!w[NAMESPACE_IDENTIFIER].shims) w[NAMESPACE_IDENTIFIER].shims = [];
-  var namespace = w[NAMESPACE_IDENTIFIER];
+  const namespace = w[NAMESPACE_IDENTIFIER];
 
   function defineIcons(prefix, icons) {
-    var params =
+    const params =
       arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-    var _params$skipHooks = params.skipHooks,
-      skipHooks = _params$skipHooks === void 0 ? false : _params$skipHooks;
-    var normalized = Object.keys(icons).reduce(function (acc, iconName) {
-      var icon = icons[iconName];
-      var expanded = !!icon.icon;
+    const _params$skipHooks = params.skipHooks;
+    const skipHooks = _params$skipHooks === void 0 ? false : _params$skipHooks;
+    const normalized = Object.keys(icons).reduce(function (acc, iconName) {
+      const icon = icons[iconName];
+      const expanded = !!icon.icon;
 
       if (expanded) {
         acc[icon.iconName] = icon.icon;
@@ -128,7 +128,7 @@
     }
   }
 
-  var icons = {
+  const icons = {
     "500px": [
       448,
       512,

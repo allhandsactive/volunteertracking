@@ -20,21 +20,21 @@
   // Preserve the original jQuery "swing" easing as "jswing"
   $.easing.jswing = $.easing.swing;
 
-  var pow = Math.pow,
-    sqrt = Math.sqrt,
-    sin = Math.sin,
-    cos = Math.cos,
-    PI = Math.PI,
-    c1 = 1.70158,
-    c2 = c1 * 1.525,
-    c3 = c1 + 1,
-    c4 = (2 * PI) / 3,
-    c5 = (2 * PI) / 4.5;
+  const pow = Math.pow;
+  const sqrt = Math.sqrt;
+  const sin = Math.sin;
+  const cos = Math.cos;
+  const PI = Math.PI;
+  const c1 = 1.70158;
+  const c2 = c1 * 1.525;
+  const c3 = c1 + 1;
+  const c4 = (2 * PI) / 3;
+  const c5 = (2 * PI) / 4.5;
 
   // x is the fraction of animation progress, in the range 0..1
   function bounceOut(x) {
-    var n1 = 7.5625,
-      d1 = 2.75;
+    const n1 = 7.5625;
+    const d1 = 2.75;
     if (x < 1 / d1) {
       return n1 * x * x;
     } else if (x < 2 / d1) {

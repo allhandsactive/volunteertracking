@@ -38,7 +38,7 @@
   }
 })(function ($, window, document, undefined) {
   "use strict";
-  var DataTable = $.fn.dataTable;
+  const DataTable = $.fn.dataTable;
 
   /* Set the defaults for DataTables initialisation */
   $.extend(true, DataTable.defaults, {
@@ -68,17 +68,17 @@
     page,
     pages
   ) {
-    var api = new DataTable.Api(settings);
-    var classes = settings.oClasses;
-    var lang = settings.oLanguage.oPaginate;
-    var aria = settings.oLanguage.oAria.paginate || {};
-    var btnDisplay,
-      btnClass,
-      counter = 0;
+    const api = new DataTable.Api(settings);
+    const classes = settings.oClasses;
+    const lang = settings.oLanguage.oPaginate;
+    const aria = settings.oLanguage.oAria.paginate || {};
+    let btnDisplay;
+    let btnClass;
+    let counter = 0;
 
     var attach = function (container, buttons) {
-      var i, ien, node, button;
-      var clickHandler = function (e) {
+      let i, ien, node, button;
+      const clickHandler = function (e) {
         e.preventDefault();
         if (
           !$(e.currentTarget).hasClass("disabled") &&
@@ -159,7 +159,7 @@
 
     // IE9 throws an 'unknown error' if document.activeElement is used
     // inside an iframe or frame.
-    var activeEl;
+    let activeEl;
 
     try {
       // Because this approach is destroying and recreating the paging

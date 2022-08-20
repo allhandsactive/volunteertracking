@@ -11,30 +11,30 @@
 })(this, function () {
   "use strict";
 
-  var _WINDOW = {};
-  var _DOCUMENT = {};
+  let _WINDOW = {};
+  let _DOCUMENT = {};
 
   try {
     if (typeof window !== "undefined") _WINDOW = window;
     if (typeof document !== "undefined") _DOCUMENT = document;
   } catch (e) {}
 
-  var _ref = _WINDOW.navigator || {},
-    _ref$userAgent = _ref.userAgent,
-    userAgent = _ref$userAgent === void 0 ? "" : _ref$userAgent;
+  const _ref = _WINDOW.navigator || {};
+  const _ref$userAgent = _ref.userAgent;
+  const userAgent = _ref$userAgent === void 0 ? "" : _ref$userAgent;
 
-  var WINDOW = _WINDOW;
-  var DOCUMENT = _DOCUMENT;
-  var IS_BROWSER = !!WINDOW.document;
-  var IS_DOM =
+  const WINDOW = _WINDOW;
+  const DOCUMENT = _DOCUMENT;
+  const IS_BROWSER = !!WINDOW.document;
+  const IS_DOM =
     !!DOCUMENT.documentElement &&
     !!DOCUMENT.head &&
     typeof DOCUMENT.addEventListener === "function" &&
     typeof DOCUMENT.createElement === "function";
-  var IS_IE = ~userAgent.indexOf("MSIE") || ~userAgent.indexOf("Trident/");
+  const IS_IE = ~userAgent.indexOf("MSIE") || ~userAgent.indexOf("Trident/");
 
-  var NAMESPACE_IDENTIFIER = "___FONT_AWESOME___";
-  var PRODUCTION = (function () {
+  const NAMESPACE_IDENTIFIER = "___FONT_AWESOME___";
+  const PRODUCTION = (function () {
     try {
       return process.env.NODE_ENV === "production";
     } catch (e) {
@@ -52,14 +52,14 @@
     }
   }
 
-  var w = WINDOW || {};
+  const w = WINDOW || {};
   if (!w[NAMESPACE_IDENTIFIER]) w[NAMESPACE_IDENTIFIER] = {};
   if (!w[NAMESPACE_IDENTIFIER].styles) w[NAMESPACE_IDENTIFIER].styles = {};
   if (!w[NAMESPACE_IDENTIFIER].hooks) w[NAMESPACE_IDENTIFIER].hooks = {};
   if (!w[NAMESPACE_IDENTIFIER].shims) w[NAMESPACE_IDENTIFIER].shims = [];
-  var namespace = w[NAMESPACE_IDENTIFIER];
+  const namespace = w[NAMESPACE_IDENTIFIER];
 
-  var shims = [
+  const shims = [
     ["glass", null, "glass-martini"],
     ["meetup", "fab", null],
     ["star-o", "far", "star"],
@@ -528,7 +528,7 @@
     if (typeof namespace.hooks.addShims === "function") {
       namespace.hooks.addShims(shims);
     } else {
-      var _namespace$shims;
+      let _namespace$shims;
 
       (_namespace$shims = namespace.shims).push.apply(_namespace$shims, shims);
     }
