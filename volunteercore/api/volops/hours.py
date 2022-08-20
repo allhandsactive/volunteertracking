@@ -36,7 +36,8 @@ def admin_get_month_hours_api(id,month):
 def update_month_hours_api():
     data = request.get_json() or {}
     if data == {}:
-        return bad_request('please supply valid json')
+        response = jsonify({"status":"please supply valid json"})
+        return bad_request(response)
     id = session['user_id']
     month = datetime.now().strftime("%Y-%m")
     hours = data['hours']
@@ -44,7 +45,7 @@ def update_month_hours_api():
     entry = Hours(user_id = id, datetime = month, hours = hours, description = description)
     db.session.add(entry)
     db.session.commit()
-    response = jsonify(entry.to_dict())
+    response = jsonify({"status":"good"})
     return response,200
 
 # API GET endpoint returns individuals total hours
@@ -81,5 +82,5 @@ def get_paginated_user_data():
     per_page = min(request.args.get('per_page', 10, type=int), 100)
     id = session['user_id']
     data = Hours.to_colletion_dict(
-            Hours.query.filter_by(user_id = id), page, per_page, 'api.get_paginated_user_data')
+            Hours.query.order_by(Hours.id.desc()).filter_by(user_id = id), page, per_page, 'api.get_paginated_user_data')
     return jsonify(data)

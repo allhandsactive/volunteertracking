@@ -8,7 +8,11 @@ $(document).ready(function() {
 			    	    datatype: "json",
 			            contentType: "application/json",
 			        }).then(res => {
-					console.log(res);
+					if (res.status == "good") {
+						location.href = "/history.html";
+					} else {
+						alert("Request failed");
+					}
 				});
 	});
 });

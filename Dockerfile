@@ -11,4 +11,6 @@ RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 # gunicorn
+CMD ["flask",  "db upgrade"]
+CMD ["flask", "auto-setup"]
 CMD ["gunicorn", "--config", "gunicorn-cfg.py", "run:app"]

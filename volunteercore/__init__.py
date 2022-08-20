@@ -53,6 +53,12 @@ def create_app(config_class=Config):
             return redirect('index.html')
         return render_template('login.html')
     
+    @app.route('/history')
+    @app.route('/history.html')
+    def history():
+        if session.get('user_id') == None:
+            return redirect('login.html')
+        return render_template('history.html')
     
 
     return app

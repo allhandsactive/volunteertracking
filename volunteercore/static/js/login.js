@@ -1,18 +1,30 @@
-$(document).ready(function() {
-	$("#login-button").on("click", function(e) {
-		    e.preventDefault();
-		    const Authorization = 'Basic ' + window.btoa(document.getElementById("InputUsername").value + ':' + document.getElementById("InputPassword").value);
+function login () {
+  const Authorization = 'Basic ' + window.btoa(document.getElementById('InputUsername').value + ':' + document.getElementById('InputPassword').value)
+  $.ajax({
+    type: 'POST',
+    url: '/api/auth/login',
+	  headers: { Authorization: Authorization },
+    error: function (e) {
+	    alert("Username or password incorrect");
+	 }
+  }).then(res => {
+    console.log(res)
+    if (res.status === 'user logged in') {
+      location.href = '/index.html'
+    }
+  })
+}
 
-		    $.ajax({type: "POST",
-			            url: "/api/auth/login",
-			    	    headers: { 'Authorization' : Authorization },
-			        }).then(res => {
-					if (res.status == "user logged in") {
-						location.href = "/index.html";
-					}
-					else {
-						//TODO some code to tell the user that the login failed
-					}
-				});
-	});
-});
+$(document).ready(function () {
+  // should just call one function here
+  $('#login-button').on('click', function (e) {
+    e.preventDefault()
+    login()
+  })
+  $('input').keyup(function (e) {
+    if (event.which == 13) {
+      e.preventDefault()
+      login()
+    }
+  })
+})
