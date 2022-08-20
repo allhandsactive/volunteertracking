@@ -25,6 +25,13 @@ Clone the repo and cd into the created directory
 1. `flask run`
 1. You can later end the app with ctrl + c.
 
+##### Adding a user
+```bash
+curl https://$\{HOST\}/api/users/create \ 
+    -H 'Content-Type: application/json' \
+    -d '{"username":"username","password":"password","email":"email@example.com"}'
+```
+
 ## Contributing
 
 We welcome new contributors. Be sure to check out the guide on [contributing][contributing], which includes instructions on how to fork, clone, branch, commit, pull request and sync your fork.
