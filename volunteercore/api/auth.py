@@ -136,3 +136,12 @@ def delete_user_api(id):
     db.session.delete(user)
     db.session.commit()
     return '', 204
+
+
+# API GET to retreive the current version
+@bp.route('/api/version',methods=['GET'])
+def get_version():
+    with open('.git/packed-refs','r') as fd:
+        data = fd.readlines()[1]
+        data = data.split(' ')[0]
+    return data, 200
